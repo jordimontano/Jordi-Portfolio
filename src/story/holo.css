@@ -1,0 +1,17 @@
+.story-word--identity{font-weight:inherit;cursor:help}
+.word-reveal--identity{perspective:1100px}
+.holo-host{width:100%;aspect-ratio:1.55;perspective:1100px;user-select:none}
+.holo-card{--rx:0deg;--ry:0deg;--fx:50%;--fy:50%;--gx:42%;--gy:35%;--foil:.3;--reveal:0;--flip:0;position:relative;width:100%;height:100%;isolation:isolate;overflow:hidden;border-radius:15px;background:linear-gradient(115deg,#e5e9cd,#d8e4cf 40%,#e9dfcd 75%,#dce8dc);border:1px solid #fff9;box-shadow:0 2px 3px #333c2920,0 16px 36px -9px #303d3540,inset 0 0 0 3px #ffffff26;transform:rotateX(var(--rx)) rotateY(var(--ry));color:#334438}
+.holo-foil,.holo-lines,.holo-glare{position:absolute;inset:0;pointer-events:none}
+.holo-foil{background:repeating-linear-gradient(10deg,#ffaaa5 8%,#fff3a1 16%,#caffaa 24%,#a3f4ef 32%,#a5b9ff 40%,#e5a4f6 48%,#ffaaa5 56%);background-size:380% 380%;background-position:var(--fx) var(--fy);mix-blend-mode:overlay;filter:contrast(2.3) saturate(1.5);opacity:var(--foil)}
+.holo-lines{background:repeating-linear-gradient(96deg,#fff8 0,transparent 2px,#0002 3px,transparent 5px);mix-blend-mode:overlay;opacity:.24}
+.holo-content{position:absolute;inset:23px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.holo-text{align-self:stretch;display:flex;flex-direction:column;justify-content:center;min-width:0;text-shadow:0 1px #ffffff70}
+.holo-name{font-size:35px;font-weight:550;letter-spacing:-.055em;line-height:1.15}
+.holo-caption{margin-top:8px;font-size:13px;letter-spacing:-.01em;white-space:nowrap}
+.holo-photo{position:relative;flex:0 0 41%;height:100%;overflow:hidden;border-radius:7px;background:#62775c;box-shadow:0 0 0 1px #324b3426,inset 0 1px 3px #0002;isolation:isolate}
+.holo-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 42%;filter:grayscale(1) sepia(.35) contrast(1.08);mix-blend-mode:luminosity}
+.holo-photo img.holo-photo-negative{position:absolute;inset:0;filter:grayscale(1) invert(1);opacity:var(--flip);mask-image:linear-gradient(125deg,transparent 5%,#000 70%)}
+.holo-glare{background:radial-gradient(farthest-corner circle at var(--gx) var(--gy),#fff9,transparent 65%);mix-blend-mode:soft-light;box-shadow:inset 0 1px 1px #fff9,inset 0 -1px 1px #42563826;border-radius:inherit}
+@media(prefers-reduced-motion:reduce){.holo-card{transform:none}}
+@media(max-width:360px){.holo-content{inset:18px;gap:10px}.holo-name{font-size:30px}.holo-caption{font-size:12px}}

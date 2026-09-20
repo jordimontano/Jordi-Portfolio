@@ -1,0 +1,10 @@
+.loading-screen{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--paper);color:var(--ink);transition:opacity .5s cubic-bezier(.22,1,.36,1);touch-action:none}
+.loading-screen.is-leaving{opacity:0;pointer-events:none}
+.loading-name{position:relative;width:min(880px,94vw);aspect-ratio:2;max-height:76svh}
+.loading-name canvas{display:block;width:100%;height:100%}
+.loading-name-fallback{position:absolute;inset:0;display:grid;align-content:center;text-align:center;font-family:'Pixelify Sans',monospace;font-size:clamp(32px,8vw,94px);line-height:1.05}
+.loading-skip{position:absolute;right:max(28px,env(safe-area-inset-right));bottom:max(24px,env(safe-area-inset-bottom));display:flex;align-items:center;gap:20px;min-height:44px;padding:8px 0 8px 12px;background:transparent;color:inherit;font-size:12px;letter-spacing:.01em}
+.loading-skip span{font-size:19px;transition:transform .2s}
+.loading-skip:hover span{transform:translate(2px,-2px)}
+.loading-skip:focus-visible{outline:2px solid currentColor;outline-offset:6px}
+@media(prefers-reduced-motion:reduce){.loading-screen{transition:none}}
