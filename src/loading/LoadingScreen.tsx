@@ -33,11 +33,21 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
     let onScreen = true;
     const preference = matchMedia('(prefers-reduced-motion: reduce)');
     let stillTimer = 0;
-    const finish = () => { if (!disposed) setLeaving(true); };
-    // A failed or stalled font request must never trap the visitor in the intro.
+    let finished = false;
+    const deadline = performance.now() + 6500;
+    const finish = () => {
+      if (disposed || finished) return;
+      finished = true;
+      setLeaving(true);
+    };
+    // Keep the deadline active after the canvas starts: hidden tabs and stalled frames
+    // may never call the engine's completion callback.
     const fallback = window.setTimeout(finish, 6500);
+    const fontTimeout = window.setTimeout(() => { if (!engine) finish(); }, 1800);
     const sync = () => {
       clearTimeout(stillTimer);
+      if (finished) return;
+      if (performance.now() >= deadline) { finish(); return; }
       if (!engine) return;
       if (preference.matches) {
         engine.stop();
@@ -56,16 +66,18 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
     document.addEventListener('visibilitychange', sync);
     preference.addEventListener('change', sync);
     void document.fonts.load('400 48px "Pixelify Sans"', 'Jordi Montano').then(() => {
-      if (disposed) return;
+      if (disposed || finished) return;
+      if (performance.now() >= deadline) { finish(); return; }
       engine = new BondType(element, '"Pixelify Sans"', finish);
       if (!engine.ok) { finish(); return; }
-      clearTimeout(fallback);
+      clearTimeout(fontTimeout);
       setPainted(true);
       sync();
     }).catch(finish);
     return () => {
       disposed = true;
       clearTimeout(fallback);
+      clearTimeout(fontTimeout);
       clearTimeout(stillTimer);
       observer.disconnect();
       intersection.disconnect();
