@@ -26,7 +26,7 @@ let ctx;
 globalThis.AudioContext=class{currentTime=0;destination={};gains=[];filters=[];sources=[];constructor(){ctx=this;}createGain(){const n=new Node();this.gains.push(n);return n;}createBiquadFilter(){const n=new Node();this.filters.push(n);return n;}createBuffer(){return {copyToChannel(){}};}createBufferSource(){const n=new Node();this.sources.push(n);return n;}resume(){this.state='running';return Promise.resolve();}suspend(){this.state='suspended';return Promise.resolve();}close(){return Promise.resolve();}};
 const {LinenAudio}=require(path.join(dir,'audio.js'));const audio=new LinenAudio();audio.setOpening(0);await audio.setEnabled(true);
 assert.equal(ctx.gains[1].gain.events.at(-1).v,closed.wind);
-audio.setOpening(32);assert.equal(ctx.gains[2].gain.events.at(-1).v,open.city);
+audio.setOpening(32);assert.equal(ctx.gains[1].gain.events.at(-1).v,open.wind);assert.equal(ctx.gains[2].gain.events.at(-1).v,0,'City ambience stays intentionally muted');
 audio.breeze();audio.setOpening(0);
 assert.equal(ctx.gains[1].gain.events.length,1,'Closing must cancel future gust gain changes');assert.equal(ctx.gains[1].gain.events[0].v,closed.wind);
 await audio.setEnabled(false);assert.equal(ctx.gains[0].gain.events.at(-1).v,0);

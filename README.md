@@ -23,6 +23,8 @@ Open http://127.0.0.1:3000.
 
 ## Implementation
 
+Follow [DESIGN.md](DESIGN.md) for portfolio design rules, including link styling.
+
 React, TypeScript, Vite, and a dynamically loaded Three.js renderer. Display positions interpolate between physics updates for smooth high-refresh rendering. Both cloth panels use fixed-step Verlet integration with structural, shear, and bend constraints, pinned headings, damped motion, and bounded pointer pulls. The window, pole, brackets, rings, sill, wall opening, and floor are geometry in one lit scene. Linen has procedural weave, bump, sheen, and approximate thin-fabric backscatter. Shared shadows, tone mapping, gentle highlight glow, page-matched shadow receivers, wider edge blur/feathering, and steady fine grain finish the rendered scene.
 
 This is an art-directed real-time study, not a physically exact textile or airflow model. Fabric translucency and backscatter are approximations; the solver uses scene bounds rather than complete self-collision or casement collision. The city panorama is an original procedural texture with atmospheric towers, detailed façades, nearby rooftops, and water tanks. It evokes a city rather than claiming an exact geographic view.

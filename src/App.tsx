@@ -88,7 +88,7 @@ export default function App() {
         {view==='work'&&<Work selected={selectedProject} onSelect={selectProject}/>} 
       </main>
 
-      <footer className="site-footer story-footer"><SocialLinks/></footer>
+      <footer className="site-footer story-footer"><a className="site-contact" href="mailto:jlaguardmontano1@babson.edu"><span className="site-contact-label">reach me@</span><span>jlaguardmontano1@babson.edu</span></a><SocialLinks/></footer>
       <EdgeBlur edge="bottom" />
     </div>
     </>

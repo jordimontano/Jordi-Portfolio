@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { SceneControls, createLinenScene } from './scene';
 import './linen.css';
 import { LinenAudio } from './audio';
+import '@fontsource/caveat/latin-400.css';
 
 export default function LinenWindow({ paused, opening, onOpeningChange, onBreeze }: { paused: boolean; opening: number; onOpeningChange: (value: number) => void; onBreeze?: () => void }) {
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -74,6 +75,7 @@ export default function LinenWindow({ paused, opening, onOpeningChange, onBreeze
         />}
         {failed && <div className="linen-fallback" role="img" aria-label="Still illustration of an open sunlit window with softly folded linen curtains"><div className="still-window" /><div className="still-rod" /><div className="still-curtain still-curtain--left" /><div className="still-curtain still-curtain--right" /></div>}
         {!ready && !failed && <p className="scene-loading" role="status">Letting the light in<span>…</span></p>}
+        {ready && !failed && !reduced && <p className="linen-drag-hint">drag the<br className="linen-hint-break"/> curtain<svg viewBox="0 0 104 12" fill="none" aria-hidden="true"><path d="M3 7C25 2 60 3 100 5M12 10C40 6 69 7 88 8"/></svg></p>}
       </div>
       <div className="linen-controls">
         <div className="opening-control">

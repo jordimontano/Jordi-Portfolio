@@ -12,7 +12,7 @@
   .edge-blur--top { height: 100px; }
   main { padding: 112px 0 0; }
 
-  .linen-section { width: min(100%, 560px); }
+  .linen-section { width: min(100%, 560px); margin-top: -18px; }
   .linen-stage { aspect-ratio: 1.08; }
   .linen-controls {
     width: min(440px, calc(100% - 2 * var(--mobile-gutter)));
